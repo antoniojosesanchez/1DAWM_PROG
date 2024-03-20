@@ -44,7 +44,10 @@ public class Ejercicio12 {
 
                 // comprobamos si hay tres en raya
                 if ((comprobarHorizontal(tablero, fil, turno)) ||
-                    (comprobarVertical(tablero, col, turno))) {
+                    (comprobarVertical(tablero, col, turno))   ||
+                    (comprobaDiagonalDerecha(tablero, turno))  ||
+                    (comprobaDiagonalIzquierda(tablero, turno))) 
+                {
 
                     System.out.println("Enhorabuena jugador " + turno + ". ¡Has ganado!");
                     fin = true ;
@@ -90,6 +93,31 @@ public class Ejercicio12 {
 
         while ((i < SIZE) && (tablero[i][col]==turno)) { i++ ; }
         return (i >= SIZE) ;
+    }
+
+     /**     
+     * @param tablero
+     * @return
+     */
+    private static boolean comprobaDiagonalDerecha(int[][] tablero, int turno) {
+
+        int i = 0 ;                
+
+        while ((i < SIZE) && (tablero[i][i]==turno)) { i++ ; }
+        return (i >= SIZE) ;
+    }
+
+     /**     
+     * @param tablero
+     * @return
+     */
+    private static boolean comprobaDiagonalIzquierda(int[][] tablero, int turno) {
+
+        int fil = SIZE - 1 ;
+        int col = 0 ;  
+
+        while ((col < SIZE) && (tablero[fil][col]==turno)) { fil-- ; col++ ; }
+        return (col >= SIZE) ;
     }
 
 
