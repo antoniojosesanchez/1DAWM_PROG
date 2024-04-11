@@ -2,6 +2,11 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 /**
  * Realiza un programa que diga cuántas ocurrencias de una palabra hay en un fichero. 
@@ -24,6 +29,9 @@ public class Ejercicio06 {
         String linea ;
         String palabra ;
 
+        List<String> lista ;
+        String[] palabras ;
+
         try {
 
             // abrimos el archivo
@@ -33,13 +41,18 @@ public class Ejercicio06 {
             palabra = args[1] ;
 
             while((linea = br.readLine())!=null) {
-            
+
+                lista = Arrays.asList(linea.split("(\\s+|\\t|\\.|,|;)")) ;
+                ocurrencias += Collections.frequency(lista, palabra) ;
+
+                //palabras = linea.split("(\\s+|\\t|\\.|,|;)") ;
+                //ocurrencias += contarPalabra(palabras, palabra) ;
+
                 // comprobamos si en la línea aparece la palabra
-                while((i = linea.indexOf(palabra))!=-1) {
+                /*while((i = linea.indexOf(palabra))!=-1) {                    
                     linea = linea.substring(i + palabra.length()) ;                
                     ocurrencias++ ;
-                }
-
+                }*/
             }
 
             br.close() ;
@@ -53,6 +66,21 @@ public class Ejercicio06 {
         }
 
 
+    }
+
+    /**     
+     * @param pajar
+     * @param aguja
+     * @return
+     */
+    private static int contarPalabra(String[] pajar, String aguja) {
+
+        int contador = 0 ;
+        for(String item: pajar) {
+            if (item.equals(aguja)) { contador++ ; }
+        }
+
+        return contador ;
     }
 
 }
