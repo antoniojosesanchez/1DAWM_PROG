@@ -8,6 +8,7 @@ public class Fruta {
 
     private final String EXTENSION = ".jpg" ;
     
+    private String id ;
     private String nombre ;
 
     private Double peso ;   // en gramos
@@ -16,8 +17,9 @@ public class Fruta {
      * @param nombre
      * @param imagen
      */
-    public Fruta(String nombre) {
+    public Fruta(String id, String nombre) {
 
+        this.id     = id ;
         this.nombre = nombre ;
     }
 
@@ -33,7 +35,7 @@ public class Fruta {
      */
     @Override
     public String toString() {        
-        return "<img src=\"./assets/images/" + this.nombre + ".jpg\" />"  ;
+        return "<img src=\"./assets/images/img_" + this.id + ".jpg\" />"  ;
     }
 
     
