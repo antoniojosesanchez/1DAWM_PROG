@@ -1,1 +1,0 @@
-mvn clean -f "./pom.xml" & mvn tomcat7:run
