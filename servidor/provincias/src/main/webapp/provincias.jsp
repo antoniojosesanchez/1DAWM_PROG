@@ -53,6 +53,13 @@
         conexion.close()  ;        
     %>
 
+    <br/>
+    <!--<a href="insertarProvincia.jsp">Insertar nueva provincia</a>-->
+    <form action="insertarProvincia.jsp" method="post">
+        <input type="hidden" name="ccaa" value="<%= codCCAA  %>" />
+        <button>Insertar nueva provincia</button>
+    </form>
+
 </body>
 </html>
  

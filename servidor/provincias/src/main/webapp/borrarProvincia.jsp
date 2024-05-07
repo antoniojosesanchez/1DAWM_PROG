@@ -3,7 +3,6 @@
 <%@page import="java.sql.Connection" %>
 <%@page import="java.sql.Statement" %>
 <%
-
     Connection conexion = Conexion.getConexion("ccaa") ;
     Statement consulta  = conexion.createStatement() ;
 
@@ -16,6 +15,11 @@
     
     // Cerramos la conexión
     conexion.close () ;
+
+    //response.setStatus(response.SC_FOUND) ;
+    //response.setHeader("Location", "http://localhost:8080/provincias") ;    
+    response.sendRedirect("http://localhost:8080/provincias") ;
 %>
 
+<!-- NO RECOMENDABLE -->
 <!--<script> document.location="http://localhost:8080/provincias" </script>-->
