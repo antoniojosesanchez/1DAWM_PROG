@@ -19,33 +19,150 @@
         p { text-align: justify ; }
     </style>
 
+
+
 </head>
 <body>
 
      <div class="container">
 
         <h1>Videoteca</h1>
+        <h5>Editar película</h5>   
+
+        <%
+
+            String sql ;
+
+            // recuperamos la clave primaria (que nos la pasan desde el index.jsp)
+            String idPel = request.getParameter("id") ;
+
+            // conectamos con la base de datos
+            Connection conexion = DB.getDB("videoteca") ;
+
+            if (request.getParameterMap().size() == 1) {
+
+                // lanzamos la consulta
+                sql = "SELECT * FROM pelicula WHERE idPel = " + idPel + ";" ;
+                ResultSet res = conexion.createStatement().executeQuery(sql) ;
+
+                res.next() ;
+        
+        %>
+
+        <form action="editar.jsp" method="post">
+
+            <input type="hidden" name="id" value="<%= idPel %>" />
+
+            <!-- Título -->
+            <div class="row mt-4">
+                <div class="col-sm-6">
+                    <label class="form-label fw-bold" for="titulo">Título: </label>
+                    <input class="form-control" id="titulo" 
+                           type="text" name="titulo" value="<%= res.getString("titulo") %>" />
+                </div>
+            </div>
+
+            <!-- -->
+            <div class="row mt-2">
+
+                <!-- Director -->
+                <div class="col-sm-4">
+                    <label class="form-label fw-bold" for="director">Director: </label>
+                    <input class="form-control" id="director" 
+                           type="text" name="director" value="<%= res.getString("director") %>" />
+                </div>
+
+                <!-- Duración -->
+                <div class="col-sm-2">
+                    <label class="form-label fw-bold" for="duracion">Duración: </label>
+                    <input class="form-control" id="duracion" 
+                           type="text" name="duracion" value="<%= res.getString("duracion") %>" />
+                </div>
+
+                <!-- Año de Estreno -->
+                <div class="col-sm-2">
+                    <label class="form-label fw-bold" for="anio">Año de Estreno: </label>
+                    <input class="form-control" id="anio" 
+                           type="text" name="anio" value="<%= res.getString("anio").substring(0,4) %>" />
+                </div>
 
 
-        <form action="" method="post">
+                <!-- Póster -->
+                <div class="col-sm-4">
+                    <label class="form-label fw-bold" for="poster">URL imagen: </label>
+                    <input class="form-control" id="poster" 
+                           type="text" name="poster" value="<%= res.getString("poster") %>" />
+                </div>
 
-            <input type="hidden" name="id" value="1" />
+            </div>
 
-            <label for="">Título: </label>
-            <input type="text" name="titulo" />
 
-            <label for="">Director: </label>
-            <input type="text" name="director" />
+            <!-- Argumento -->
+            <div class="row mt-2">
+                <div class="col">
+                     <label class="form-label fw-bold" for="argumento">Argumento: <span class="fw-normal">(300 caracteres máximo)</span> </label>
+                     <textarea class="form-control" id="argumento" name="argumento" rows="8"><%= res.getString("argumento") %></textarea>
+                </div>
+            </div>
 
-            <label for="">Año: </label>
-            <input type="number" name="anio" />
-
-            <label for="">Título: </label>
-            <textarea name="argumento"></textarea>
+            <!-- Botonera -->
+            <div class="row mt-2">
+                <div class="col text-end">
+                    <button class="btn btn-danger">Guardar película</button> 
+                    <a class="btn btn-dark" href="http://localhost:8080/videoteca">Cancelar</a>
+                    <!--<button type="button" onclick="javascript: history.back() ;" class="btn btn-dark">Cancelar</button>-->
+                </div>
+            </div>
 
         </form>
 
     </div>
+    <% 
+    
+            // cerramos la conexión
+            conexion.close() ;
+
+         } else {
+
+            // construyo la consulta
+            sql =  "UPDATE pelicula SET " +
+                "titulo='" + request.getParameter("titulo") + "', " +
+                "director='" + request.getParameter("director") + "', " +
+                "argumento='" + request.getParameter("argumento") + "', " +
+                "duracion= " + request.getParameter("duracion") + "," +
+                "anio='" + request.getParameter("anio") + "', " +
+                "poster='" + request.getParameter("poster") + "' " +
+                "WHERE idPel = " + idPel + ";" ; 
+
+
+            //out.println(sql) ;
+
+            // lanzamos la consulta
+            conexion.createStatement().execute(sql) ;
+            
+            // cerramos la conexión
+            conexion.close() ;
+
+            // redirigimos
+            response.sendRedirect("http://localhost:8080/videoteca") ;
+
+        } 
+    %>
+
+
+
+    <script>
+        /*var boton = document.getElementById("cancelar") ;
+            boton.onclick = function(event) { 
+                event.preventDefault() ;
+                history.back() ;                 
+            }
+
+            boton.addEventLister("click", function(event) {
+                event.preventDefault() ;
+                history.back() ; 
+            }) ;*/
+    </script>
 
 
 </body>

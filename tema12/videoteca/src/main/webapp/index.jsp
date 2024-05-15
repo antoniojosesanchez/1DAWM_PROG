@@ -23,7 +23,7 @@
         <h1>Videoteca</h1>
 
         <menu>
-            <a href="nueva.jsp">Añadir película</a>
+            <a href="nuevo.jsp">Añadir película</a>
         </menu>
 
         <main>
