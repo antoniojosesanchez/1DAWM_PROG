@@ -1,0 +1,11 @@
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:44:56 +0200] "GET /personal/ HTTP/1.1" 500 2666 http-bio-8080-exec-1 477
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:45:09 +0200] "GET /personal/ HTTP/1.1" 200 1678 http-bio-8080-exec-2 76
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:45:09 +0200] "GET /favicon.ico HTTP/1.1" 404 - http-bio-8080-exec-4 0
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:45:11 +0200] "POST /personal/index.jsp HTTP/1.1" 200 1878 http-bio-8080-exec-5 201
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:45:37 +0200] "POST /personal/index.jsp HTTP/1.1" 200 1878 http-bio-8080-exec-6 4
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:46:10 +0200] "POST /personal/index.jsp HTTP/1.1" 302 - http-bio-8080-exec-7 3
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:46:10 +0200] "GET /personal/main.jsp HTTP/1.1" 404 985 http-bio-8080-exec-9 1
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:49:06 +0200] "GET /personal/main.jsp HTTP/1.1" 200 6585 http-bio-8080-exec-1 72
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:50:28 +0200] "POST /personal/index.jsp HTTP/1.1" 500 6040 http-bio-8080-exec-5 56
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:50:33 +0200] "GET /personal/ HTTP/1.1" 200 1678 http-bio-8080-exec-6 2
+0:0:0:0:0:0:0:1 - - [22/May/2024:13:50:40 +0200] "POST /personal/index.jsp HTTP/1.1" 500 6040 http-bio-8080-exec-6 15
