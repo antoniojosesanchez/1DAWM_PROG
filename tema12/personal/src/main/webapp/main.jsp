@@ -21,43 +21,47 @@
 
     <div class="container">
 
-
-    <table>
-        <thead>
-            <tr>
-                <th>Título</th>
-                <th></th>
-                <th></th>
-                <th></th>
-            </tr>
-        </thead>
-
-        <tbody>
-        <%
-            // 2. establecemos conexión con el servidor de base de datos
-            Statement consulta = DB.getDB() ;            
-        
-            // 3. lanzamos la consulta contra la base de datos            
-            String sql = "SELECT * FROM recordatorio; " ;
-            
-            ResultSet res = consulta.executeQuery(sql) ; 
-
-            while(res.next()) {
-        %>
-            <tr>
-                <td><%= res.getString("titulo") %></td>
-                <td><a href="">info</a></td>
-                <td><a href="">editar</a></td>
-                <td><a href="">borrar</a></td>
-            </tr>
-        <%
-            }
-
-            DB.close() ;
-        %>
-        </tbody>
+        <h1 class="text-center">Mi Aplicación</h1>
+        <a class="btn btn-primary mt-4" href="nuevo.jsp?idu=<%= request.getParameter("idu") %>">Añadir recordatorio</a>
+        <a class="btn btn-dark mt-4" href="guardar.jsp?idu=<%= request.getParameter("idu") %>">Guardar</a>
     
-    </table>
+        <table class="table mt-4">
+            <thead>
+                <tr>
+                    <th>Título</th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+            <%
+                // 2. establecemos conexión con el servidor de base de datos
+                Connection conexion = DB.getDb() ;
+                Statement consulta  = conexion.createStatement()  ;            
+            
+                // 3. lanzamos la consulta contra la base de datos            
+                String sql = "SELECT * FROM recordatorio WHERE idUsu = " + request.getParameter("idu") + "; " ;
+                
+                ResultSet res = consulta.executeQuery(sql) ; 
+
+                while(res.next()) {
+            %>
+                <tr>
+                    <td><%= res.getString("titulo") %></td>
+                    <td><a href="info.jsp?idr=<%= res.getString("idRec") %>">info</a></td>
+                    <td><a href="editar.jsp?idr=<%= res.getString("idRec") %>">editar</a></td>
+                    <td><a href="borrar.jsp?idr=<%= res.getString("idRec") %>">borrar</a></td>
+                </tr>
+            <%
+                }
+
+                conexion.close() ;
+            %>
+            </tbody>
+        
+        </table>
 
    
 

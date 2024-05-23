@@ -45,7 +45,7 @@
             } else {
 
                 // redirigimos
-                response.sendRedirect("main.jsp?idu=" + res.getString("idUsu")) ;
+                response.sendRedirect("main.jsp?id=" + res.getString("idUsu")) ;
             }
 
            conexion.close() ;
